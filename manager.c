@@ -162,3 +162,17 @@ void savefile(product *p[20],int count){
 }
 
 
+int load_data(product *p[20]){
+    FILE *file;
+    int i=0;
+    file = fopen("Product.txt","r");
+    while(!feof(file)){
+        fscanf(file,"%s",p[i]->name);
+        fscanf(file,"%s",p[i]->explain);
+        fscanf(file,"%s",p[i]->weight);
+        fscanf(file,"%d",p[i]->price);
+        fscanf(file,"%d",p[i]->way);
+        i++;
+    }
+    return i;
+}
