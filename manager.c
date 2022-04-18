@@ -87,3 +87,22 @@ void delete_product(product *p[20],int count){//제품 삭제
         p[delete_index-1] -> price = -1;
     }
 }
+
+
+void search_product_name(product *p[20], int count){{//이름으로 제품 검색하는 함수
+    char search_name[30];
+    int flag = 0;
+    printf("검색할 제품의 이름을 입력하세요.");
+    fgets(search_name,30,stdin);
+    for(int i=0; i<count; i++){
+        if(p[i]->price == -1) continue;
+        if(strstr(p[i]->name, search_name)){//제품 검색
+            printf("%d. " ,i+1);
+            printf("%s\n",p[i]->name);
+            printf("%s\n",p[i]->explain);
+            printf("\n%d\n\n\n",p[i]->price);
+            flag++;
+        }
+    }
+    if(flag == 0) printf("No search!!\n");
+}
