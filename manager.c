@@ -144,3 +144,21 @@ void search_product_way(product *p[20], int count){//배송 방법으로 제품 
     }
     if(flag == 0) printf("No search!!\n");
 }
+
+void savefile(product *p[20],int count){
+    FILE *file;
+    file = fopen("Product.txt", "w");
+    for(int i=0; i<count; i++){
+        if(p[i]->price == -1) continue;
+        else{
+            fprintf(file, "%d. " ,i+1);
+            fprintf(file, "%s\n",p[i]->name);
+            fprintf(file, "%s\n",p[i]->explain);
+            fprintf(file,"\n%d\n\n\n",p[i]->price);
+        }
+    }
+    printf("=> 저장됨!\n");
+    fclose(file);
+}
+
+
