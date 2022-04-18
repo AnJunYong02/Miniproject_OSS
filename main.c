@@ -8,7 +8,13 @@ int see_menu(){
     printf("3. 제품 추가\n");
     printf("4, 제품 수정\n");
     printf("5. 제품 삭제하기\n");
+    printf("6. 제품 검색하기 (제품 이름으로 검색하기)\n");
+    printf("7. 제품 검색하기 (제품 가격대로 검색하기)\n");
+    printf("8. 제품 검색하기 (제품 배송 방법으로 검색하기)\n");
+    printf("9. 파일 저장하기\n");
+    printf("10. 파일 불러오기\n");
     printf("0. 종료\n");
+    printf("=> 실행하고 싶은 번호를 선택하세요.");
     scanf("%d",&menu);
     return menu;
 }
