@@ -38,6 +38,14 @@ int main(){
         else if( menu == 3) count = add_product(p, count);
         else if( menu == 4) update_product(p, count);
         else if( menu == 5) delete_product(p, count);
+        else if( menu == 6) search_product_name(p, count);
+        else if( menu == 7) search_product_price(p, count);
+        else if( menu == 8) search_product_way(p, count);
+        else if( menu == 9) savefile(p, count);
+        else if( menu == 10) {
+            count = load_data(p);
+            read_product(p,count);
+        }
     }
     printf("종료됨!\n");
     return 0;
