@@ -1,4 +1,25 @@
 #include "manager.h"
+/*manager.c */
+
+
+int see_menu(){
+    int menu;
+    printf("1. 제품 전체 리스트\n");
+    printf("2. 제품 한개에 대한 자세한 정보\n");
+    printf("3. 제품 추가\n");
+    printf("4, 제품 수정\n");
+    printf("5. 제품 삭제하기\n");
+    printf("6. 제품 검색하기 (제품 이름으로 검색하기)\n");
+    printf("7. 제품 검색하기 (제품 가격대로 검색하기)\n");
+    printf("8. 제품 검색하기 (제품 배송 방법으로 검색하기)\n");
+    printf("9. 파일 저장하기\n");
+    printf("10. 파일 불러오기\n");
+    printf("0. 종료\n");
+    printf("=> 실행하고 싶은 번호를 선택하세요.");
+    scanf("%d",&menu);
+    return menu;
+}
+
 
 void list_product(product *p[20], int count){//제품 전체 리스트
     printf("\n\n");
@@ -12,7 +33,7 @@ void list_product(product *p[20], int count){//제품 전체 리스트
 }
 
 
-void one_product(product *p[20], int count){//제품 한개에 대한 자세한 정보
+void one_product(product *p[20]){//제품 한개에 대한 자세한 정보
     int num;
     printf("\n\n알고 싶은 제품의 번호는?");
     scanf("%d",&num);
@@ -25,7 +46,9 @@ void one_product(product *p[20], int count){//제품 한개에 대한 자세한 
     else if(p[num-1] -> way == 1)// 새벽배송이라면
         printf("배송방법: 새벽배송\n");
     else printf("배송방법: 택배배송\n");//택배배송일때
+    printf("\n\n");
 } 
+
 
 int add_product(product *p[20], int count){//제품 추가
     p[count] = (product *)malloc(sizeof(product));
@@ -45,7 +68,7 @@ int add_product(product *p[20], int count){//제품 추가
     printf("제품 배송방법은?(1:새벽배송 2: 택배배송) ");
     scanf("%d",&p[count] -> way);
     getchar();
-    printf("==> 추가됨!\n");
+    printf("==> 추가됨!\n\n\n");
     count++;
     return count;
 }
@@ -69,7 +92,7 @@ void update_product(product *p[20],int count){//제품 수정
     printf("제품 배송방법은? ");
     scanf("%d",&p[index-1] -> way);
     getchar();
-    printf("=> 수정됨!!\n");
+    printf("=> 수정됨!!\n\n\n");
 }
 
 
@@ -89,18 +112,19 @@ void delete_product(product *p[20],int count){//제품 삭제
 }
 
 
-void search_product_name(product *p[20], int count){{//이름으로 제품 검색하는 함수
+void search_product_name(product *p[20], int count){//이름으로 제품 검색하는 함수 
     char search_name[30];
     int flag = 0;
+    getchar();
     printf("검색할 제품의 이름을 입력하세요.");
     fgets(search_name,30,stdin);
     for(int i=0; i<count; i++){
         if(p[i]->price == -1) continue;
         if(strstr(p[i]->name, search_name)){//제품 검색
             printf("%d. " ,i+1);
-            printf("%s\n",p[i]->name);
-            printf("%s\n",p[i]->explain);
-            printf("\n%d\n\n\n",p[i]->price);
+            printf("제품 이름 : %s",p[i]->name);
+            printf("제품 설명 : %s",p[i]->explain);
+            printf("제품 가격 : %d\n\n",p[i]->price); 
             flag++;
         }
     }
@@ -108,42 +132,44 @@ void search_product_name(product *p[20], int count){{//이름으로 제품 검�
 }
 
 
-void search_product_price(product *p[20], int count){//가격으로 제품 검색
+void search_product_price(product *p[20], int count){ //가격으로 제품 검색
     int search_price;
     int flag = 0;
+    getchar();
     printf("검색할 제품의 가격을 입력하세요.");
     scanf("%d",&search_price);
     for(int i=0; i<count; i++){
         if(p[i]->price == -1) continue;
         if( p[i]->price == search_price){//제품 검색
             printf("%d. " ,i+1);
-            printf("%s\n",p[i]->name);
-            printf("%s\n",p[i]->explain);
-            printf("\n%d\n\n\n",p[i]->price);
+            printf("제품 이름 : %s",p[i]->name);
+            printf("제품 설명 : %s",p[i]->explain);
+            printf("제품 가격 : %d\n\n",p[i]->price); 
             flag++;
         }
     }
-    if(flag == 0) printf("No search!!\n");
+    if(flag == 0) printf("=====\n No search!! ===== \n");
 }
-
 
 void search_product_way(product *p[20], int count){//배송 방법으로 제품 검색
     int search_way;
     int flag = 0;
+    getchar();
     printf("검색할 제품의 배송방법을 입력하세요.(1:새벽배송 2: 택배배송)");
     scanf("%d", &search_way);
     for(int i=0; i<count; i++){
         if(p[i]->price == -1) continue;
         if( p[i]->way == search_way){//제품 검색
-            printf("%d. " ,i+1);
-            printf("%s\n",p[i]->name);
-            printf("%s\n",p[i]->explain);
-            printf("\n%d\n\n\n",p[i]->price); 
+           printf("%d. " ,i+1);
+            printf("제품 이름 : %s",p[i]->name);
+            printf("제품 설명 : %s",p[i]->explain);
+            printf("제품 가격 : %d\n\n",p[i]->price); 
             flag++;
         }
     }
     if(flag == 0) printf("No search!!\n");
 }
+
 
 void savefile(product *p[20],int count){
     FILE *file;
@@ -152,9 +178,9 @@ void savefile(product *p[20],int count){
         if(p[i]->price == -1) continue;
         else{
             fprintf(file, "%d. " ,i+1);
-            fprintf(file, "%s\n",p[i]->name);
-            fprintf(file, "%s\n",p[i]->explain);
-            fprintf(file,"\n%d\n\n\n",p[i]->price);
+            fprintf(file, "제품 이름 : %s",p[i]->name);
+            fprintf(file, "제품 설명 : %s",p[i]->explain);
+            fprintf(file,"제품 가격 : %d\n\n\n",p[i]->price);
         }
     }
     printf("=> 저장됨!\n");
@@ -162,32 +188,12 @@ void savefile(product *p[20],int count){
 }
 
 
-int load_data(product *p[20]){
+void load_data(){
     FILE *file;
-    int i=0;
     file = fopen("Product.txt","r");
+    char str[100];
     while(!feof(file)){
-        fscanf(file,"%s",p[i]->name);
-        fscanf(file,"%s",p[i]->explain);
-        fscanf(file,"%s",p[i]->weight);
-        fscanf(file,"%d",p[i]->price);
-        fscanf(file,"%d",p[i]->way);
-        i++;
-    }
-    return i;
+        fgets(str,100,file);
+        printf("%s",str);
+        }
 }
-
-
-
-void read_product(product *p[20], int count){
-    FILE* file;
-    file = fopen("Product.txt","r");
-    for(int i= 0; i<count; i++){
-        printf("%d. " ,i+1);
-        printf("%s\n",p[i]->name);
-        printf("%s\n",p[i]->explain);
-        printf("\n%d\n\n\n",p[i]->price);
-    }
-    fclose(file);
-}
-
