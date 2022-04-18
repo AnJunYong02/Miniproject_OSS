@@ -176,3 +176,18 @@ int load_data(product *p[20]){
     }
     return i;
 }
+
+
+
+void read_product(product *p[20], int count){
+    FILE* file;
+    file = fopen("Product.txt","r");
+    for(int i= 0; i<count; i++){
+        printf("%d. " ,i+1);
+        printf("%s\n",p[i]->name);
+        printf("%s\n",p[i]->explain);
+        printf("\n%d\n\n\n",p[i]->price);
+    }
+    fclose(file);
+}
+
