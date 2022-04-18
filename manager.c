@@ -106,3 +106,25 @@ void search_product_name(product *p[20], int count){{//이름으로 제품 검�
     }
     if(flag == 0) printf("No search!!\n");
 }
+
+
+void search_product_price(product *p[20], int count){//가격으로 제품 검색
+    int search_price;
+    int flag = 0;
+    printf("검색할 제품의 가격을 입력하세요.");
+    scanf("%d",&search_price);
+    for(int i=0; i<count; i++){
+        if(p[i]->price == -1) continue;
+        if( p[i]->price == search_price){//제품 검색
+            printf("%d. " ,i+1);
+            printf("%s\n",p[i]->name);
+            printf("%s\n",p[i]->explain);
+            printf("\n%d\n\n\n",p[i]->price);
+            flag++;
+        }
+    }
+    if(flag == 0) printf("No search!!\n");
+}
+
+
+
