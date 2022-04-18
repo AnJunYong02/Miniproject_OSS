@@ -127,4 +127,20 @@ void search_product_price(product *p[20], int count){//가격으로 제품 검�
 }
 
 
-
+void search_product_way(product *p[20], int count){//배송 방법으로 제품 검색
+    int search_way;
+    int flag = 0;
+    printf("검색할 제품의 배송방법을 입력하세요.(1:새벽배송 2: 택배배송)");
+    scanf("%d", &search_way);
+    for(int i=0; i<count; i++){
+        if(p[i]->price == -1) continue;
+        if( p[i]->way == search_way){//제품 검색
+            printf("%d. " ,i+1);
+            printf("%s\n",p[i]->name);
+            printf("%s\n",p[i]->explain);
+            printf("\n%d\n\n\n",p[i]->price); 
+            flag++;
+        }
+    }
+    if(flag == 0) printf("No search!!\n");
+}
