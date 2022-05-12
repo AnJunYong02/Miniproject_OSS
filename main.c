@@ -29,6 +29,6 @@ int main(){
         else if( menu == 9) savefile(p, count);
         else if( menu == 10)load_data();
     }
-    printf("종료됨!\n");
+    printf("종료됨!!\n");
     return 0;
 }
